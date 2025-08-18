@@ -1,0 +1,27 @@
+//  action type
+export const LOGIN_START='LOGIN_START';
+export const LOGIN_SUCCESSFULLY = "LOGIN_SUCCESSFULLY";
+export const LOGIN_FAILURE='LOGIN_FAILURE';
+
+export const REGISTER_USER_SUCCESSFULLY='REGISTER_USER_SUCCESSFULLY';
+
+export const GET_ADMIN='GET_ADMIN';
+
+export const FORGOT_PASSWORD='FORGOT_PASSWORD';
+export const RESET_PASSWORD='RESET_PASSWORD';
+
+export const LOGOUT='LOGOUT';
+
+export const GET_USER = "GET_USER";
+
+export const GET_ALL_USERS='GET_ALL_USERS';
+
+export const UPDATE_START="UPDATE_START";
+export const UPDATE_SUCCESS="UPDATE_SUCCESS";
+export const UPDATE_FAILURE="UPDATE_FAILURE";
+
+export const DELETE='DELETE';
+
+export const EXPORT_USER="EXPORT_USER";
+
+export const EXPORT_SINGLE_USER="EXPORT_SINGLE_USER";
