@@ -14,10 +14,12 @@ import { promises as fs } from 'node:fs'
 import { dirname, join } from 'node:path'
 
 // Installation: npm install --save-dev @iconify/tools @iconify/utils @iconify/json @iconify/iconify
+import { createRequire } from 'module';
+
+import { fileURLToPath } from 'url'
+
 import { cleanupSVG, importDirectory, isEmptyColor, parseColors, runSVGO } from '@iconify/tools'
 import { getIcons, getIconsCSS, stringToIcon } from '@iconify/utils'
-import { createRequire } from 'module';
-import { fileURLToPath } from 'url'
 
 
 const __filename = fileURLToPath(import.meta.url)

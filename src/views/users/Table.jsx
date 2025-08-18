@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+
 import {
   IconButton,
   Chip,
@@ -14,18 +15,31 @@ import {
   Snackbar, Alert,
   ListItemText
 } from '@mui/material';
+
 import DeleteIcon from '@mui/icons-material/Delete';
+
 import DownloadIcon from '@mui/icons-material/Download';
+
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+
 import VisibilityIcon from '@mui/icons-material/Visibility';
+
 import EditIcon from '@mui/icons-material/Edit';
+
 import classnames from 'classnames'
+
 import UserDetailsModal from './singleUser'
+
 import { injectModels } from '../../Redux/injectModel'
+
 import CustomAvatar from '@core/components/mui/Avatar'
+
 import tableStyles from '@core/styles/table.module.css'
+
 import CreateUser from './createUser';
+
 import EditUserModal from './updateUser';
+
 import ConfirmDelete from './confirmDelete';
 
 const Table = props => {
@@ -78,10 +92,12 @@ useEffect(() => {
 
 const handleEdit = (userId) => {
   const userToEdit = users.find(user => user._id === userId);
+  
   if (userToEdit) {
     setselectedUserEdit(userToEdit);
     setOpenEditModal(true);
   }
+
   handleCloseMenu();
 };
 
@@ -96,12 +112,15 @@ const handleEdit = (userId) => {
 const confirmDeleteUser = async () => {
   if (!deleteUserId) {
     showSnackbar("No user selected to delete.")
+
     return
   }
 
   setDeleteLoading(true)
+
   try {
     const res = await props.auth.delete(deleteUserId)
+
     if (res.success) {
       setUsers(prev => prev.filter(user => user._id !== deleteUserId))
       showSnackbar('User deleted successfully!')

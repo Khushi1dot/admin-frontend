@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 import {
   Modal,
   Box,
@@ -17,6 +18,7 @@ import {
 } from "@mui/material";
 
 import moment from 'moment-timezone';
+
 import {languageData,getCountries, getStatesByCountry,currencyList} from '@/utils/countryData';
 
 export default function EditUserModal({ open, onClose, user, onUserUpdated, auth }) {
@@ -32,9 +34,12 @@ export default function EditUserModal({ open, onClose, user, onUserUpdated, auth
     zipCode: '',
     organization: '',
     address: '',
+
     currency: ''
   });
+
    const [countries, setCountries] = useState([]);
+
   const [states, setStates] = useState([]);
 const [country, setCountry] = useState('');
 const [state, setState] = useState('');
@@ -56,16 +61,22 @@ const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: '
         timeZone: user.timeZone || '',
         zipCode: user.zipCode || '',
         organization: user.organization || '',
+
         address: user.address || '',
         currency: user.currency || ''
+
       });
+
       if (Array.isArray(user.language)) {
       setLanguage(user.language);
     } else if (typeof user.language === 'string' && user.language.trim() !== '') {
+
       setLanguage([user.language]);
     } else {
+
       setLanguage([]);
     }
+
     if (user.country) {
       setStates(getStatesByCountry(user.country));
       setTimezones(moment.tz.zonesForCountry(user.country) || []);
@@ -74,32 +85,45 @@ const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: '
 }, [user]);
 
   useEffect(() => {
+
     setCountries(getCountries());
+
   }, []);
 
    const handleCountryChange = (e) => {
      const countryCode = e.target.value;
+
     //  setCountry(countryCode);
+
       setFormData(prev => ({ ...prev, country: countryCode }));
+
      setStates(getStatesByCountry(countryCode));
+
     //  setState('');
+
       setTimezones(moment.tz.zonesForCountry(countryCode) || []);
    };
  
   const handleStateChange = (e) => {
    const stateName = e.target.value;
+
   //  setState(stateName);
+
    setFormData(prev => ({ ...prev, state: stateName }));
  };
 
   const handleChange = (field,value) => {
+
     setFormData((prev) => ({ ...prev, [field]: value }));
+
   };
 
   const handleLanguageChange = (event) => {
+
      const {
       target: { value }
     } = event
+
     setLanguage(typeof value === "string" ? value.split(",") : value);
   };
   
@@ -109,41 +133,58 @@ const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: '
   
    const handleAvatarChange = e => {
    const file = e.target.files[0];
+
   if (file) {
+
     setAvatar(file);
+
     setPreview(URL.createObjectURL(file));
   }
   };
 
 
   const handleSubmit = async () => {
+
     try {
+
        const data = new FormData();
+
     for (let key in formData) {
+
       data.append(key, formData[key]);
+
     }
     
     if (avatar) data.append('avatar', avatar);
      data.append('language', JSON.stringify(language));
+
     //  language.forEach(lang => data.append('language', lang));
      const response= await auth.update(user._id, data, { ...formData, language });
+
      if (response.success) {
+
        onUserUpdated();
       onClose();
       setSnackbar({ open: true, message: 'User created successfully!', severity: 'success' })
       setIsOpen(false)
+
     } else {
+
       setSnackbar({ open: true, message: 'Failed to create user', severity: 'error' })
     }
   }
+
     //  onUserUpdated();
     //   onClose();
     catch (err) {
       console.error("Update failed", err);
     }
   }
-  return (
+
+  
+return (
     <>
+    
     <Modal open={open} onClose={onClose}>
       <Box
            sx={{
@@ -151,6 +192,7 @@ const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: '
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
+
           //  width: { xs: '90vw', sm: '80vw', md: '600px' },
           maxWidth: 800,
           maxHeight: '90vh',

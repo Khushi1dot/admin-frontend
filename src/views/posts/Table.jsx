@@ -38,6 +38,7 @@ const [isModalOpen, setIsModalOpen] = useState(false)
  const [deleteModalOpen, setDeleteModalOpen] = useState(false)
   const [deletePostId, setDeletePostId] = useState(null)
   const [deleteLoading, setDeleteLoading] = useState(false)
+
 const [snackbar, setSnackbar] = useState({
     open: false,
     message: '',
@@ -150,12 +151,15 @@ showSnackbar('Post download successfully')
 const confirmDeletePost = async () => {
   if (!deletePostId) {
     showSnackbar("No post selected to delete.")
-    return
+    
+return
   }
 
   setDeleteLoading(true)
+
   try {
     const res = await props.posts.deletePostById(deletePostId)
+
     if (res.success) {
       setPosts(prev => prev.filter(post => post._id !== deletePostId))
       showSnackbar('Post deleted successfully!')
@@ -402,12 +406,14 @@ const avatarUrl = `http://localhost:5000${post.user?.avatar?.replace(/\\/g, '/')
   open={snackbar.open}
   autoHideDuration={4000}
   onClose={handleCloseSnackbar}
+
   // anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
 >
   <Alert
     onClose={handleCloseSnackbar}
     severity={snackbar.severity}
     sx={{ width: '100%' }}
+
     // variant="filled"
   >
     {snackbar.message}

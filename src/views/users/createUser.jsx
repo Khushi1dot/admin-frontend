@@ -1,8 +1,9 @@
 'use client'
 
 import { useState,useEffect } from 'react'
+
 import moment from 'moment-timezone';
-import { getCountries, getStatesByCountry,languageData ,currencyList} from '@/utils/countryData';
+
 import Modal from 'react-modal'
 import {
   TextField,
@@ -24,6 +25,8 @@ import {
 import { Close as CloseIcon } from '@mui/icons-material'
 
 import CardContent from '@mui/material/CardContent'
+
+import { getCountries, getStatesByCountry,languageData ,currencyList} from '@/utils/countryData';
 
 import { injectModels } from '../../Redux/injectModel'
 
@@ -63,17 +66,20 @@ const [state, setState] = useState('');
 
   const handleCountryChange = (e) => {
     const countryCode = e.target.value;
+
     setCountry(countryCode);
      setFormData(prev => ({ ...prev, country: countryCode }));
     setStates(getStatesByCountry(countryCode));
     setState(''); // reset state when country changes
      // Get all timezones for the country
     const tz = moment.tz.zonesForCountry(countryCode);
+
     setTimezones(tz || []);
   };
 
  const handleStateChange = (e) => {
   const stateName = e.target.value;
+
   setState(stateName);
   setFormData(prev => ({ ...prev, state: stateName })); // ✅ store in formData
 };
