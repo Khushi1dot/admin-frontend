@@ -168,7 +168,7 @@ const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: '
 
 <Box display="flex" alignItems="center" mb={3}>
           <Avatar
-            src={preview || (user?.avatar ? `http://localhost:5000${user.avatar}` : '')}
+            src={preview || (user?.avatar ? `https://admin-backend-production-026a.up.railway.app${user.avatar}` : '')}
             sx={{ width: 64, height: 64, mr: 2 }}
           />
           <Box>

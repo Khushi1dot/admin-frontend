@@ -94,7 +94,7 @@ const UserDetailsModal = ({ open, onClose, userId, auth }) => {
               <Grid item xs={12} md={4} display="flex" justifyContent="center">
                 <Avatar
                   alt={user.name}
-                  src={`http://localhost:5000${user.avatar}`}
+                  src={`https://admin-backend-production-026a.up.railway.app${user.avatar}`}
                   sx={{ width: 140, height: 140, borderRadius: 3 }}
                 />
               </Grid>
@@ -173,7 +173,7 @@ const UserDetailsModal = ({ open, onClose, userId, auth }) => {
                               <Box key={i} sx={{ borderBottom: '1px solid #eee', pb: 1, mb: 1 }}>
                                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 0.5 }}>
                                   <Avatar
-                                    src={`http://localhost:5000${c.userId?.avatar}`}
+                                    src={`https://admin-backend-production-026a.up.railway.app${c.userId?.avatar}`}
                                     alt={c.userId?.name}
                                     sx={{ width: 32, height: 32, mr: 1 }}
                                   />

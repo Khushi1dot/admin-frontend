@@ -272,8 +272,8 @@ useEffect(() => {
           </thead>
           <tbody>
             {filteredPosts.map((post, index) => {
-const image = `http://localhost:5000/${post.images[0]?.replace(/\\/g, '/')}`;
-const avatarUrl = `http://localhost:5000${post.user?.avatar?.replace(/\\/g, '/') || ''}`;
+const image = `https://admin-backend-production-026a.up.railway.app/${post.images[0]?.replace(/\\/g, '/')}`;
+const avatarUrl = `https://admin-backend-production-026a.up.railway.app${post.user?.avatar?.replace(/\\/g, '/') || ''}`;
 
 
   const categories = post.categories;

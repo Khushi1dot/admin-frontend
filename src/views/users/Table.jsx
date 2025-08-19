@@ -281,7 +281,7 @@ showSnackbar('All users export successfully')
               <tr key={user._id || index}>
                 <td className='!plb-1'>
                   <div className='flex items-center gap-3'>
-                    <CustomAvatar src={`http://localhost:5000${user.avatar}`} size={34} />
+                    <CustomAvatar src={`https://admin-backend-production-026a.up.railway.app${user.avatar}`} size={34} />
                     <div className='flex flex-col'>
                       <Typography color='text.primary' className='font-medium'>
                         {user.name}
