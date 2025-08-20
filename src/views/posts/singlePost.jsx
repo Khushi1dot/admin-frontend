@@ -48,7 +48,7 @@
 //           {post.images?.map((img, index) => (
 //             <img
 //               key={index}
-//               src={`https://admin-backend-production-026a.up.railway.app/${img.replace(/\\/g, '/')}`}
+//               src={`${NEXT_PUBLIC_APP_URL}/${img.replace(/\\/g, '/')}`}
 //               alt={`Image ${index + 1}`}
 //               className="rounded-md object-cover w-full"
 //             />
@@ -83,7 +83,7 @@
 //         {/* Author */}
 //         <div className="flex items-center gap-4 mb-6">
 //           <img
-//             src={`https://admin-backend-production-026a.up.railway.app${post.user?.avatar}`}
+//             src={`${NEXT_PUBLIC_APP_URL}${post.user?.avatar}`}
 //             alt={post.user?.name}
 //             className="w-14 h-14 rounded-full object-cover"
 //           />
@@ -100,7 +100,7 @@
 //   {post.comments?.map((comment) => (
 //     <div key={comment._id} className="text-sm border-b pb-3 flex gap-3">
 //       <img
-//         src={ `https://admin-backend-production-026a.up.railway.app${comment.userId?.avatar}`}
+//         src={ `${NEXT_PUBLIC_APP_URL}${comment.userId?.avatar}`}
 //         alt={comment.userId?.name}
 //         className="w-8 h-8 rounded-full object-cover"
 //       />
@@ -145,6 +145,8 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import { injectModels } from '../../Redux/injectModel'
 
 dayjs.extend(relativeTime)
+
+const NEXT_PUBLIC_APP_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const modalStyle = {
   position: 'absolute',
@@ -212,9 +214,9 @@ function PostDetailModal({ open, onClose, postId, posts }) {
             {post.images.map((img, idx) => (
               <img
                 key={idx}
-                src={`https://admin-backend-production-026a.up.railway.app/${img.replace(/\\/g, '/')}`}
+                src={`${NEXT_PUBLIC_APP_URL}/${img.replace(/\\/g, '/')}`}
                 className="rounded-md w-full object-cover"
-                style={{ maxHeight: 300 }}
+                style={{ maxHeight: 200 }}
                 alt={`post-img-${idx}`}
               />
             ))}
@@ -261,7 +263,7 @@ function PostDetailModal({ open, onClose, postId, posts }) {
         {/* Author Info */}
         <Box display="flex" alignItems="center" gap={2}>
           <Avatar
-            src={`https://admin-backend-production-026a.up.railway.app${post.user?.avatar}`}
+            src={`${NEXT_PUBLIC_APP_URL}${post.user?.avatar}`}
             alt={post.user?.name}
             sx={{ width: 48, height: 48 }}
           />
@@ -290,7 +292,7 @@ function PostDetailModal({ open, onClose, postId, posts }) {
                 borderBottom="1px solid #eee"
               >
                 <Avatar
-                  src={`https://admin-backend-production-026a.up.railway.app${c.userId?.avatar}`}
+                  src={`${NEXT_PUBLIC_APP_URL}${c.userId?.avatar}`}
                   alt={c.userId?.name}
                   sx={{ width: 32, height: 32 }}
                 />
@@ -333,7 +335,7 @@ function PostDetailModal({ open, onClose, postId, posts }) {
         borderBottom="1px solid #eee"
       >
         <Avatar
-          src={`https://admin-backend-production-026a.up.railway.app${user.avatar}`}
+          src={`${NEXT_PUBLIC_APP_URL}${user.avatar}`}
           alt={user.name}
           sx={{ width: 32, height: 32 }}
         />
@@ -365,7 +367,7 @@ function PostDetailModal({ open, onClose, postId, posts }) {
         borderBottom="1px solid #eee"
       >
         <Avatar
-          src={`https://admin-backend-production-026a.up.railway.app${user.avatar}`}
+          src={`${NEXT_PUBLIC_APP_URL}${user.avatar}`}
           alt={user.name}
           sx={{ width: 32, height: 32 }}
         />

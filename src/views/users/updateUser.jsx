@@ -21,6 +21,8 @@ import moment from 'moment-timezone';
 
 import {languageData,getCountries, getStatesByCountry,currencyList} from '@/utils/countryData';
 
+const NEXT_PUBLIC_APP_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 export default function EditUserModal({ open, onClose, user, onUserUpdated, auth }) {
 
   const [formData, setFormData] = useState({
@@ -165,12 +167,12 @@ const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: '
 
        onUserUpdated();
       onClose();
-      setSnackbar({ open: true, message: 'User created successfully!', severity: 'success' })
-      setIsOpen(false)
+      setSnackbar({ open: true, message: 'User data Updated successfully!', severity: 'success' })
+    
 
     } else {
 
-      setSnackbar({ open: true, message: 'Failed to create user', severity: 'error' })
+      setSnackbar({ open: true, message: 'Failed to Update user', severity: 'error' })
     }
   }
 
@@ -210,7 +212,7 @@ return (
 
 <Box display="flex" alignItems="center" mb={3}>
           <Avatar
-            src={preview || (user?.avatar ? `https://admin-backend-production-026a.up.railway.app${user.avatar}` : '')}
+            src={preview || (user?.avatar ? `${NEXT_PUBLIC_APP_URL}${user.avatar}` : '')}
             sx={{ width: 64, height: 64, mr: 2 }}
           />
           <Box>

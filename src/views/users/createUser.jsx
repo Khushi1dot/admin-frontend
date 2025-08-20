@@ -384,7 +384,7 @@ const [state, setState] = useState('');
                 </Grid>
               </CardContent>
 
-              <Button variant='contained' component='label'>
+              <Button variant='contained' sx={{ left:'25%' , width: '50%' }} component='label'>
                 Upload Avatar
                 <input type='file' hidden multiple accept='image/*' onChange={handleFileChange} />
               </Button>
@@ -395,7 +395,7 @@ const [state, setState] = useState('');
                 ))}
               </Box>
 
-              <Button type='submit' variant='contained' color='primary'>
+              <Button type='submit'  sx={{ left:'25%' , width: '50%' }} variant='contained' color='primary'>
                 Create User
               </Button>
             </Stack>

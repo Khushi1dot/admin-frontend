@@ -22,7 +22,7 @@ import CreatePost from './createPost';
 import PostDetailModal from './singlePost';
 import ConfirmDelete from './confirmDelete';
 
-
+const NEXT_PUBLIC_APP_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const PostTable = (props) => {
   const [posts, setPosts] = useState([])
@@ -272,8 +272,8 @@ useEffect(() => {
           </thead>
           <tbody>
             {filteredPosts.map((post, index) => {
-const image = `https://admin-backend-production-026a.up.railway.app/${post.images[0]?.replace(/\\/g, '/')}`;
-const avatarUrl = `https://admin-backend-production-026a.up.railway.app${post.user?.avatar?.replace(/\\/g, '/') || ''}`;
+const image = `${NEXT_PUBLIC_APP_URL}/${post.images[0]?.replace(/\\/g, '/')}`;
+const avatarUrl = `${NEXT_PUBLIC_APP_URL}${post.user?.avatar?.replace(/\\/g, '/') || ''}`;
 
 
   const categories = post.categories;

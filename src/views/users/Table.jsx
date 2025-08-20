@@ -42,6 +42,8 @@ import EditUserModal from './updateUser';
 
 import ConfirmDelete from './confirmDelete';
 
+const NEXT_PUBLIC_APP_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 const Table = props => {
   const [users, setUsers] = useState([])
   const [filteredUsers, setFilteredUsers] = useState([])
@@ -281,7 +283,7 @@ showSnackbar('All users export successfully')
               <tr key={user._id || index}>
                 <td className='!plb-1'>
                   <div className='flex items-center gap-3'>
-                    <CustomAvatar src={`https://admin-backend-production-026a.up.railway.app${user.avatar}`} size={34} />
+                    <CustomAvatar src={`${NEXT_PUBLIC_APP_URL}${user.avatar}`} size={34} />
                     <div className='flex flex-col'>
                       <Typography color='text.primary' className='font-medium'>
                         {user.name}
