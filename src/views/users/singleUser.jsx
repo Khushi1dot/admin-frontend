@@ -27,6 +27,7 @@ dayjs.extend(relativeTime)
 dayjs.extend(advancedFormat)
 
 const NEXT_PUBLIC_APP_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 const UserDetailsModal = ({ open, onClose, userId, auth }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(false)
