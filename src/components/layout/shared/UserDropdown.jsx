@@ -21,6 +21,8 @@ import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import MenuItem from '@mui/material/MenuItem'
 import Button from '@mui/material/Button'
+import Snackbar from '@mui/material/Snackbar'
+import MuiAlert from '@mui/material/Alert'
 
 import { injectModels } from '@/Redux/injectModel'
 
@@ -90,6 +92,16 @@ const UserDropdown = (props) => {
   }, [])
 
 
+  const BACKEND_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000'
+
+const avatarSrc =
+  admin?.avatar?.startsWith('http')
+    ? admin.avatar
+    : admin?.avatar
+      ? `${BACKEND_BASE_URL}/${admin.avatar.replace(/^\/+/, '')}`
+      : ''
+
+
   return (
     <>
       <Badge
@@ -102,7 +114,7 @@ const UserDropdown = (props) => {
         <Avatar
           ref={anchorRef}
           alt={admin?.name}
-          src={admin?.avatar}
+           src={avatarSrc}
           onClick={handleDropdownOpen}
           className='cursor-pointer bs-[38px] is-[38px]'
         />

@@ -210,13 +210,13 @@ function PostDetailModal({ open, onClose, postId, posts }) {
 
         {/* Images */}
         {post.images?.length > 0 && (
-          <Box className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <Box className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {post.images.map((img, idx) => (
               <img
                 key={idx}
                 src={`${NEXT_PUBLIC_APP_URL}/${img.replace(/\\/g, '/')}`}
                 className="rounded-md w-full object-cover"
-                style={{ maxHeight: 200 }}
+                style={{ maxHeight: 400 }}
                 alt={`post-img-${idx}`}
               />
             ))}

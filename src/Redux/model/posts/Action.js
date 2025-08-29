@@ -1,50 +1,50 @@
-import { Posts } from "../../../Service/index";
-import * as CONSTANT from "./constant";
+import { Posts } from '../../../Service/index'
+import * as CONSTANT from './constant'
 
-export const getAllPosts = () => async (dispatch) => {
+export const getAllPosts = () => async dispatch => {
   try {
-    const response = await Posts.GetAllPosts();
+    const response = await Posts.GetAllPosts()
 
-    console.log(response, "response");
+    console.log(response, 'response')
 
     if (response.success) {
-      console.log(response);
+      console.log(response)
       dispatch({
         type: CONSTANT.GET_ALL_POSTS,
-        payload: response.data,
-      });
-      
-return response;
+        payload: response.data
+      })
+
+      return response
     } else {
-      return response;
+      return response
     }
   } catch (error) {
-    console.log(error, "res is not success");
+    console.log(error, 'res is not success')
   }
-};
+}
 
-export const createPost = (formData) => async (dispatch) => {
+export const createPost = formData => async dispatch => {
   try {
-    const response = await Posts.CreatePost(formData);
+    const response = await Posts.CreatePost(formData)
 
-    console.log("Creating Post Response:", response);
+    console.log('Creating Post Response:', response)
 
-   if (response.success) {
-    dispatch({
-      type: CONSTANT.CREATE_POST,
-      payload: response.data,
-      });
-      
-return response;
-      } else {
-        return response;
-        }
+    if (response.success) {
+      dispatch({
+        type: CONSTANT.CREATE_POST,
+        payload: response.data
+      })
+
+      return response
+    } else {
+      return response
+    }
   } catch (error) {
-    console.log(error, "issue in creating post");
-    
-return { success: false, message: error.message };
+    console.log(error, 'issue in creating post')
+
+    return { success: false, message: error.message }
   }
-};
+}
 
 // export const getMyPost = () => async (dispatch) => {
 //   try {
@@ -71,106 +71,106 @@ return { success: false, message: error.message };
 //   }
 // };
 
-export const getPostById = (id) => async(dispatch)=>{
-  try{
+export const getPostById = id => async dispatch => {
+  try {
     // const token=localStorage.getItem("access_token");
-    const response=await Posts.GetPostById(id);
+    const response = await Posts.GetPostById(id)
 
-    console.log(response,'response by action for get post by id');
+    console.log(response, 'response by action for get post by id')
 
     // if(response){
     //   const{token}=response;
     //   console.log(token,'token by action');
 
     dispatch({
-      type:CONSTANT.GET_POST_BY_ID,
-      payload:response,
-    });
-     console.log(response,'response after dispatch');
-    
-return response;
+      type: CONSTANT.GET_POST_BY_ID,
+      payload: response
+    })
+    console.log(response, 'response after dispatch')
+
+    return response
 
     // }
-  }catch(error){
-console.log(error, "issue in getting my post");
-    
-return { success: false, msg: error.msg };
+  } catch (error) {
+    console.log(error, 'issue in getting my post')
+
+    return { success: false, msg: error.msg }
   }
 }
 
-export const deletePostById =(_id)=> async(dispatch)=>{
-  try{
-    const response=await Posts.DeletPostById(_id);
+export const deletePostById = _id => async dispatch => {
+  try {
+    const response = await Posts.DeletPostById(_id)
 
-    console.log(response,'response by deleting posts');
+    console.log(response, 'response by deleting posts')
     dispatch({
-      type:CONSTANT.DELETE_POST_BY_ID,
-      payload:response,
+      type: CONSTANT.DELETE_POST_BY_ID,
+      payload: response
     })
-    console.log(response,'response after dispatching in delete post');
-    
-return response;
-  }catch(error){
-    console.log(error, "issue in deleting post");
-    
-return { success: false, msg: error.msg };
+    console.log(response, 'response after dispatching in delete post')
+
+    return response
+  } catch (error) {
+    console.log(error, 'issue in deleting post')
+
+    return { success: false, msg: error.msg }
   }
 }
 
-export const updatePostById=(id,updatedPost) => async(dispatch)=>{
-  try{
-    const token =localStorage.getItem('access_token');
+export const updatePostById = (id, updatedPost) => async dispatch => {
+  try {
+    const token = localStorage.getItem('access_token')
 
-    console.log(token,'token from update post by id');
-   const response= await Posts.UpdatePostById(id,updatedPost,token);
+    console.log(token, 'token from update post by id')
+    const response = await Posts.UpdatePostById(id, updatedPost, token)
 
-   console.log(response,'response from update post by id from action');
-   dispatch({
-    type:CONSTANT.UPDATE_POST_BY_ID,
-    payload:response,
-   })
-   console.log(response,'response of update post after dispacth');
-   
-return response;
-  }catch(error){
-    console.error(error,'issue in updating post.');
-    
-return{success:false,msg:error.msg};
+    console.log(response, 'response from update post by id from action')
+    dispatch({
+      type: CONSTANT.UPDATE_POST_BY_ID,
+      payload: response
+    })
+    console.log(response, 'response of update post after dispacth')
+
+    return response
+  } catch (error) {
+    console.error(error, 'issue in updating post.')
+
+    return { success: false, msg: error.msg }
   }
 }
 
 export const exportPost = () => async dispatch => {
   try {
-    const response = await Posts.exportPost();
+    const response = await Posts.exportPost()
 
     if (response) {
-      dispatch({ type: CONSTANT.EXPORT_POST, payload: response }); // include blob
-      
-return { success: true, data: response };
+      dispatch({ type: CONSTANT.EXPORT_POST, payload: response }) // include blob
+
+      return { success: true, data: response }
     } else {
-      return { success: false, message: 'Export failed' };
+      return { success: false, message: 'Export failed' }
     }
   } catch (error) {
-    console.error('export post error:', error);
-    
-return { success: false, message: error.message };
-  }
-};
+    console.error('export post error:', error)
 
-export const exportSinglePost = (id) => async dispatch => {
+    return { success: false, message: error.message }
+  }
+}
+
+export const exportSinglePost = id => async dispatch => {
   try {
-    const response = await Posts.exportSinglePost(id);
+    const response = await Posts.exportSinglePost(id)
 
     if (response) {
-      dispatch({ type: CONSTANT.EXPORT_SINGLE_POST, payload: response }); // include blob
-      
-return { success: true, data: response };
+      dispatch({ type: CONSTANT.EXPORT_SINGLE_POST, payload: response }) // include blob
+
+      return { success: true, data: response }
     } else {
-      return { success: false, message: 'Export failed' };
+      return { success: false, message: 'Export failed' }
     }
   } catch (error) {
-    console.error('export post error:', error);
-    
-return { success: false, message: error.message };
+    console.error('export post error:', error)
+
+    return { success: false, message: error.message }
   }
-};
+}

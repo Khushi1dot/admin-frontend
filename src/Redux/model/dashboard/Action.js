@@ -1,5 +1,8 @@
 import * as CONSTANT from './constant'
-import { Dashboard } from '../../../Service/index'
+
+// import { Dashboard } from '../../../Service/index'
+
+import { Dashboard } from '@/Service/index'
 
 // Dashboard summary action
 export const getSummary =
