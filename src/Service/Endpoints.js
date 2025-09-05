@@ -3,7 +3,8 @@ export const API_ENDPOINTS = {
   LOGIN_ADMIN: '/v1/admin/login-admin',
   GET_ADMIN: '/v1/admin/admin-profile',
   GET_USER_BY_ID: '/v1/admin/getById/',
-
+  LOGOUT: '/v1/admin/logout',
+  
   // FORGOT_PASSWORD_USER:'/v1/forgot-password',
   // RESET_PASSWORD_USER:'/v1/reset-password',
   UPDATE_BY_Id: '/v1/admin/update/',

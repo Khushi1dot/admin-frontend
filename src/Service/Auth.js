@@ -66,6 +66,31 @@ return response.data;
   }
 };
 
+export const logout = async () => {
+  try {
+    const url = `${NEXT_PUBLIC_APP_URL}${API_ENDPOINTS.LOGOUT}`; // e.g., /api/logout
+console.log(url,'url')
+    const response = await axios.post(url, {}, {
+      headers: {
+        "Content-Type": "application/json",
+      },  
+      withCredentials: true, // 🔥 Important: to send cookies
+    });
+
+    console.log("Logout response:", response);
+
+    if (response.data.success === ResponseEnum.SUCCESS) {
+      return response.data;
+    } else {
+      throw new Error(response.data.message || "Logout failed");
+    }
+  } catch (error) {
+    console.error("Logout Error:", error);
+    throw error;
+  }
+};
+
+
 export const getAdmin = async () => {
   try {
     const url = `${NEXT_PUBLIC_APP_URL}${API_ENDPOINTS.GET_ADMIN}`;

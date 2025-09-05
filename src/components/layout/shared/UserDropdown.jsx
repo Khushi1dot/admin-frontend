@@ -49,6 +49,18 @@ const UserDropdown = (props) => {
   // Hooks
   const router = useRouter()
 
+  const handleLogout = async (e) => {
+  // Close dropdown
+  handleDropdownClose(e)
+
+  // Call logout logic from redux model
+  await props.auth.logout()
+
+  // Navigate to login
+  router.push('/login')
+}
+
+
   const handleDropdownOpen = () => {
     !open ? setOpen(true) : setOpen(false)
   }
@@ -175,7 +187,7 @@ const avatarSrc =
                       color='error'
                       size='small'
                       endIcon={<i className='ri-logout-box-r-line' />}
-                      onClick={e => handleDropdownClose(e, '/login')}
+                       onClick={handleLogout}
                       sx={{ '& .MuiButton-endIcon': { marginInlineStart: 1.5 } }}
                     >
                       Logout

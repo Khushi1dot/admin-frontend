@@ -43,6 +43,8 @@ return {
   }
 }
 
+
+
 export const getAdmin = () => async dispatch => {
   try {
     console.log('getadmin running')
@@ -195,13 +197,17 @@ return response.users;
 }
 
 // LOGOUT ACTION
-export const logout = () => dispatch => {
-  localStorage.removeItem('access_token')
-  localStorage.removeItem('isAuthenticated')
+export const logout = () => async dispatch => {
+  try {
+    await Auth.logout(); // 🔥 call backend to remove cookie
 
-  dispatch({ type: CONSTANTS.LOGOUT })
-  dispatch({ type: CONSTANTS.GET_USER, payload: { user: null } })
-}
+    dispatch({ type: CONSTANTS.LOGOUT });
+    dispatch({ type: CONSTANTS.GET_ADMIN, payload: { admin: null } });
+    console.log("Logged out successfully");
+  } catch (error) {
+    console.error("Logout action error:", error);
+  }
+};
 
 export const deleteById = (id) => async dispatch => {
   try {
