@@ -17,8 +17,6 @@ export const loginAdmin = object => async dispatch => {
         type: CONSTANTS.LOGIN_SUCCESSFULLY,
         payload: { admin  }
       })
-
-      alert('Login successful')
       
 return response
     } else {

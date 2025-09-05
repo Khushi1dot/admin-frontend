@@ -100,11 +100,9 @@ return Object.values(newErrors).every(x => x === '')
         setSnackbar({ open: true, message: res.message || 'Login successful!', severity: 'success' })
         setTimeout(() => router.push('/'), 1500)
       } else {
-       throw new Error("error",res.message);
         setSnackbar({ open: true, message: res?.message || 'Login failed', severity: 'error' })
       }
     } catch (err) {
-     throw new Error(err)
       setSnackbar({
         open: true,
         message: err?.response?.data?.message || 'Server error',
