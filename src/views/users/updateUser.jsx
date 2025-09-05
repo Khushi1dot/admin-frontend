@@ -77,7 +77,7 @@ export default function EditUserModal({ open, onClose, user, onUserUpdated, auth
     setLanguage([]);
   }
 } catch (err) {
-  console.warn('Failed to parse language:', err);
+throw new Error('Failed to parse language:', err);
   setLanguage([]);
 }
 
@@ -165,7 +165,7 @@ export default function EditUserModal({ open, onClose, user, onUserUpdated, auth
     } catch (err) {
       //  onUserUpdated();
       //   onClose();
-      console.error('Update failed', err)
+    throw new Error('Update failed', err)
     }
   }
 

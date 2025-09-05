@@ -9,13 +9,13 @@ export const GetAllPosts = async () => {
   try {
     const url = `${NEXT_PUBLIC_APP_URL}${API_ENDPOINTS.GET_ALL_POST}`
 
-    console.log(url)
+
 
     const response = await axios.get(url,{
         withCredentials: true,
     })
     
-    console.log(response.data, 'response')
+   
 
     if (response.data.success === ResponseEnum.SUCCESS) {
       return response.data
@@ -23,7 +23,7 @@ export const GetAllPosts = async () => {
       return response.data
     }
   } catch (error) {
-    console.error('Getting all post Error:', error)
+    // console.error('Getting all post Error:', error)
     
 return { success: false, message: error.message }
   }
@@ -31,11 +31,8 @@ return { success: false, message: error.message }
 
 export const CreatePost = async (postData) => {
   try {
-    console.log('creating post')
     const url = `${NEXT_PUBLIC_APP_URL}${API_ENDPOINTS.CREATE_POST}`
 
-    console.log(url)
-    console.log('Post Data:', postData)
 
     const response = await axios.post(url, postData, {
       withCredentials: true,
@@ -44,19 +41,16 @@ export const CreatePost = async (postData) => {
       },
     })
 
-    console.log('Post creation response:', response)
 
     if (response.data.success === ResponseEnum.SUCCESS) {
-      console.log(response.data, 'success to create post')
       
 return response.data
     } else {
-      console.log(response.data, 'failed to create post')
       
 return response.data
     }
   } catch (error) {
-    console.error('Creating post Error:', error)
+    // console.error('Creating post Error:', error)
     
 return { success: false, message: error.message }
   }
@@ -91,21 +85,18 @@ export const GetPostById = async (id) => {
   try {
     const url = `${NEXT_PUBLIC_APP_URL}${API_ENDPOINTS.GET_POST_BY_ID}${id}`
 
-    console.log(url, 'url of userId for getting posts')
+
 
     const response = await axios.get(url, {
       withCredentials: true
     })
 
-    console.log(response.data, 'response from get post by id')
-
     if (response.data.success === ResponseEnum.SUCCESS) {
-      console.log(response.data, 'response after success')
       
 return response.data
     }
   } catch (error) {
-    console.error('getting post by id Error:', error)
+    // console.error('getting post by id Error:', error)
     
 return { success: false, message: error.message }
   }
@@ -115,22 +106,19 @@ export const DeletPostById = async _id => {
   try {
     const url = `${NEXT_PUBLIC_APP_URL}${API_ENDPOINTS.DELETE_POST_BY_ID}${_id}`
 
-    console.log(url, 'url of delete post by id')
 
     const response = await axios.delete(url, {
       withCredentials: true
     })
 
-    console.log(response, 'response from delete post by id')
-    console.log(response.data, 'res by data.msg')
 
     if (response.data.success === ResponseEnum.SUCCESS) {
-      console.log(response.data, 'response after success')
       
 return response.data
     }
   } catch (error) {
-    console.error('deleting post by id Error:', error)
+
+    // console.error('deleting post by id Error:', error)
     
 return { success: false, message: error.message }
   }
@@ -140,8 +128,6 @@ export const UpdatePostById = async (_id, updatedPost) => {
   try {
     const url = `${NEXT_PUBLIC_APP_URL}${API_ENDPOINTS.UPDATE_POST_BY_ID}${_id}`
 
-    console.log(url, 'url from update post by id')
-
     const response = await axios.put(url, updatedPost, {
       headers: {
         'Content-Type': 'application/json'
@@ -149,16 +135,12 @@ export const UpdatePostById = async (_id, updatedPost) => {
       withCredentials: true
     })
 
-    console.log(response, 'response from updating post by id')
-    console.log(response.data.msg, 'response.data.msg')
-
     if (response.data.success === ResponseEnum.SUCCESS) {
-      console.log(response.data.msg, 'response.data.msg after success')
       
 return response
     }
   } catch (error) {
-    console.error('Update post by id Error:', error)
+    // console.error('Update post by id Error:', error)
     
 return { success: false, msg: error.msg }
   }
@@ -176,12 +158,11 @@ export const image = async formData => {
     })
 
     if (response.status === ResponseEnum.STATUS) {
-      console.log(response.data, 'success in fetching image data')
       
 return response.data
     }
   } catch (error) {
-    console.error('Error in image API:', error)
+    // console.error('Error in image API:', error)
     
 return { success: false, message: error.message }
   }
@@ -191,7 +172,6 @@ export const exportPost= async () => {
   try {
     const url = `${NEXT_PUBLIC_APP_URL}${API_ENDPOINTS.EXPORT_POST}`;
 
-    console.log(url, "url of export post");
 
     const response = await axios.get(url, {
       withCredentials: true,
@@ -199,12 +179,11 @@ export const exportPost= async () => {
     });
 
     if (response.status === ResponseEnum.STATUS) {
-      console.log(response.data, "success in exporting post data");
       
 return response.data;
     }
   } catch (error) {
-    console.error("Error in exportPost API:", error);
+    // console.error("Error in exportPost API:", error);
     
 return { success: false, message: error.message };
   }
@@ -214,7 +193,6 @@ export const exportSinglePost= async (id) => {
   try {
     const url = `${NEXT_PUBLIC_APP_URL}${API_ENDPOINTS.EXPORT_SINGLE_POST}${id}`;
 
-    console.log(url, "url of export post");
 
     const response = await axios.get(url, {
       withCredentials: true,
@@ -222,12 +200,11 @@ export const exportSinglePost= async (id) => {
     });
 
     if (response.status === ResponseEnum.STATUS) {
-      console.log(response.data, "success in exporting post data");
       
 return response.data;
     }
   } catch (error) {
-    console.error("Error in exportPost API:", error);
+    // console.error("Error in exportPost API:", error);
     
 return { success: false, message: error.message };
   }

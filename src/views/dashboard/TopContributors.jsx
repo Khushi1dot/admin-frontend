@@ -32,7 +32,7 @@ const TopContributors = ({ from, to, dashboard }) => {
         if (res.success) setContributors(res.contributors)
      
         } catch (err) {
-        console.error(err)
+       throw new Error(err)
       }
     }
 

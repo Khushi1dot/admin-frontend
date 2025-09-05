@@ -23,7 +23,6 @@ const iconMap = {
 }
 
 const Summary = (props) => {
-  console.log(props,'props in summary');
 
   const { from, to, dashboard } = props;
 
@@ -33,8 +32,6 @@ const Summary = (props) => {
     const fetchSummary = async () => {
       if (typeof dashboard.getSummary !== 'function') {
       
-        console.error('getSummary is not a function')
-       
         return
       
       }
@@ -46,7 +43,7 @@ const Summary = (props) => {
         setSummary(response)
   
       } else {
-        console.error('❌ Failed to fetch dashboard summary')
+      throw new Error('❌ Failed to fetch dashboard summary')
       }
     }
 

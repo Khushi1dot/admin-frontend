@@ -48,7 +48,7 @@ const TopCategories = (props) => {
         setTotalPostCount(0)
       }
     } catch (err) {
-      console.error('Failed to fetch top categories', err)
+     throw new Error('Failed to fetch top categories', err)
       setCategories([])
       setTotal(0)
       setTotalPostCount(0)

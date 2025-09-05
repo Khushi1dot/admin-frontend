@@ -5,10 +5,9 @@ export const getAllPosts = () => async dispatch => {
   try {
     const response = await Posts.GetAllPosts()
 
-    console.log(response, 'response')
 
     if (response.success) {
-      console.log(response)
+    
       dispatch({
         type: CONSTANT.GET_ALL_POSTS,
         payload: response.data
@@ -19,7 +18,7 @@ export const getAllPosts = () => async dispatch => {
       return response
     }
   } catch (error) {
-    console.log(error, 'res is not success')
+   throw new Error(error, 'res is not success')
   }
 }
 
@@ -27,7 +26,6 @@ export const createPost = formData => async dispatch => {
   try {
     const response = await Posts.CreatePost(formData)
 
-    console.log('Creating Post Response:', response)
 
     if (response.success) {
       dispatch({
@@ -40,7 +38,7 @@ export const createPost = formData => async dispatch => {
       return response
     }
   } catch (error) {
-    console.log(error, 'issue in creating post')
+    // console.log(error, 'issue in creating post')
 
     return { success: false, message: error.message }
   }
@@ -76,8 +74,7 @@ export const getPostById = id => async dispatch => {
     // const token=localStorage.getItem("access_token");
     const response = await Posts.GetPostById(id)
 
-    console.log(response, 'response by action for get post by id')
-
+   
     // if(response){
     //   const{token}=response;
     //   console.log(token,'token by action');
@@ -86,13 +83,14 @@ export const getPostById = id => async dispatch => {
       type: CONSTANT.GET_POST_BY_ID,
       payload: response
     })
-    console.log(response, 'response after dispatch')
+    
+    // console.log(response, 'response after dispatch')
 
     return response
 
     // }
   } catch (error) {
-    console.log(error, 'issue in getting my post')
+    // console.log(error, 'issue in getting my post')
 
     return { success: false, msg: error.msg }
   }
@@ -102,16 +100,14 @@ export const deletePostById = _id => async dispatch => {
   try {
     const response = await Posts.DeletPostById(_id)
 
-    console.log(response, 'response by deleting posts')
-    dispatch({
+     dispatch({
       type: CONSTANT.DELETE_POST_BY_ID,
       payload: response
     })
-    console.log(response, 'response after dispatching in delete post')
 
     return response
   } catch (error) {
-    console.log(error, 'issue in deleting post')
+    // console.log(error, 'issue in deleting post')
 
     return { success: false, msg: error.msg }
   }
@@ -121,19 +117,19 @@ export const updatePostById = (id, updatedPost) => async dispatch => {
   try {
     const token = localStorage.getItem('access_token')
 
-    console.log(token, 'token from update post by id')
+  
     const response = await Posts.UpdatePostById(id, updatedPost, token)
 
-    console.log(response, 'response from update post by id from action')
+    
     dispatch({
       type: CONSTANT.UPDATE_POST_BY_ID,
       payload: response
     })
-    console.log(response, 'response of update post after dispacth')
+   
 
     return response
   } catch (error) {
-    console.error(error, 'issue in updating post.')
+    // console.error(error, 'issue in updating post.')
 
     return { success: false, msg: error.msg }
   }
@@ -151,7 +147,7 @@ export const exportPost = () => async dispatch => {
       return { success: false, message: 'Export failed' }
     }
   } catch (error) {
-    console.error('export post error:', error)
+    // console.error('export post error:', error)
 
     return { success: false, message: error.message }
   }
@@ -169,7 +165,7 @@ export const exportSinglePost = id => async dispatch => {
       return { success: false, message: 'Export failed' }
     }
   } catch (error) {
-    console.error('export post error:', error)
+    // console.error('export post error:', error)
 
     return { success: false, message: error.message }
   }

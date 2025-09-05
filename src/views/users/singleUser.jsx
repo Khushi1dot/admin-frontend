@@ -44,7 +44,7 @@ const UserDetailsModal = ({ open, onClose, userId, auth }) => {
 
         setUser(res.user)
       } catch (err) {
-        console.error('Error fetching user:', err)
+throw new Error('Error fetching user:', err)
       } finally {
         setLoading(false)
       }

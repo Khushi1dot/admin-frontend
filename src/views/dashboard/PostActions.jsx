@@ -46,7 +46,7 @@ const PostActivities = (props) => {
         setActivities(res.activities || [])
      
       } catch (err) {
-        console.error('Failed to fetch recent post activities:', err)
+       throw new Error('Failed to fetch recent post activities:', err)
       }
     }
 

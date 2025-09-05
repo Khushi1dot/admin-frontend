@@ -11,7 +11,6 @@ const Link = (props, ref) => {
 
   const { href, onClick, ...rest } = props
 
-console.log(href,"href")
 
   return (
     <NextLink

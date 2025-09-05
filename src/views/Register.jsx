@@ -16,7 +16,7 @@ import Logo from '@components/layout/shared/Logo'
 import { useImageVariant } from '@core/hooks/useImageVariant'
 
 const Register = ({ mode, props }) => {
-  console.log(props,'props')
+
   const router = useRouter()
 
   const [isPasswordShown, setIsPasswordShown] = useState(false)
@@ -100,11 +100,11 @@ return Object.values(newErrors).every(msg => msg === '')
         setSnackbar({ open: true, message: 'Registration successful!', severity: 'success' })
         setTimeout(() => router.push('/login'), 1500)
       } else {
-        console.log("error");
+        throw new Error("error");
         setSnackbar({ open: true, message: res.message || 'Registration failed', severity: 'error' })
       }
     } catch (err) {
-      console.error(err)
+     throw new Error(err)
       setSnackbar({
         open: true,
         message: err?.response?.data?.message || 'Server error',

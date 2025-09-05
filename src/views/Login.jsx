@@ -27,7 +27,6 @@ import themeConfig from '@configs/themeConfig'
 import { useImageVariant } from '@core/hooks/useImageVariant'
 
 const Login = (props) => {
-  console.log(props,'props');
   const router = useRouter()
 
   const [formData, setFormData] = useState({
@@ -101,11 +100,11 @@ return Object.values(newErrors).every(x => x === '')
         setSnackbar({ open: true, message: res.message || 'Login successful!', severity: 'success' })
         setTimeout(() => router.push('/'), 1500)
       } else {
-        console.log("error",res.message);
+       throw new Error("error",res.message);
         setSnackbar({ open: true, message: res?.message || 'Login failed', severity: 'error' })
       }
     } catch (err) {
-      console.error(err)
+     throw new Error(err)
       setSnackbar({
         open: true,
         message: err?.response?.data?.message || 'Server error',

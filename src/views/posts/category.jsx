@@ -73,7 +73,7 @@ const PostTableByCategory = props => {
           setPosts(res.data)
         }
       } catch (err) {
-        console.log('Error in fetchPosts:', err)
+        throw new Error('Error in fetchPosts:', err)
       } finally {
         setLoading(false)
       }
@@ -152,7 +152,6 @@ const PostTableByCategory = props => {
       if (res.success) setPosts(prev => prev.filter(post => post._id !== deletePostId))
       showSnackbar(res.success ? 'Post deleted successfully!' : 'Failed to delete post.')
     } catch (err) {
-      console.error('Delete failed', err)
       showSnackbar('Delete failed due to server error.')
     } finally {
       setDeleteLoading(false)
@@ -182,7 +181,7 @@ const PostTableByCategory = props => {
         showSnackbar('Posts exported successfully')
       }
     } catch (err) {
-      console.error('Export failed:', err)
+   
       showSnackbar('Failed to export posts')
     }
   }
@@ -199,9 +198,6 @@ const PostTableByCategory = props => {
     
         const url = window.URL.createObjectURL(blob)
     
-        console.log(blob, 'blog')
-        console.log(url, 'url')
-    
         const link = document.createElement('a')
     
         link.href = url
@@ -213,7 +209,6 @@ const PostTableByCategory = props => {
         showSnackbar('Failed to export post')
       }
     } catch (err) {
-      console.error('Single post export failed:', err)
       showSnackbar('Failed to export post')
     }
   }

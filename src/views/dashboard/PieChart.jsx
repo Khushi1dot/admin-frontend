@@ -133,7 +133,7 @@ const SignupsByCountry = ({ from, to, dashboard }) => {
           setData([])
         }
       } catch (err) {
-        console.error('Error fetching signups by country:', err)
+       throw new Error('Error fetching signups by country:', err)
         setFullData([])
         setData([])
       } finally {

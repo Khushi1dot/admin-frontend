@@ -76,7 +76,7 @@ const Table = props => {
         throw new Error('User list is empty or invalid')
       }
     } catch (err) {
-      console.log('Error in fetchUsers:', err)
+    throw new Error('Error in fetchUsers:', err)
       setError('Failed to load users')
     } finally {
       setLoading(false)
@@ -149,7 +149,7 @@ const Table = props => {
         showSnackbar('Failed to delete user.')
       }
     } catch (err) {
-      console.error('Delete failed', err)
+    
       showSnackbar('Delete failed due to server error.', err)
     } finally {
       setDeleteLoading(false)
@@ -193,7 +193,6 @@ const Table = props => {
         window.URL.revokeObjectURL(url)
       }
     } catch (err) {
-      console.error('Export all users failed:', err)
       showSnackbar('Failed to export users')
     }
   }
@@ -221,7 +220,6 @@ const Table = props => {
         showSnackbar('Failed to export user')
       }
     } catch (err) {
-      console.error('Export single user failed:', err)
       showSnackbar('Export failed')
     }
   }

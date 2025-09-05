@@ -28,7 +28,6 @@ import { injectModels } from '@/Redux/injectModel'
 const BACKEND_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000'
 
 const AccountDetails = props => {
-  console.log(props, 'props')
 
   const [countries, setCountries] = useState([])
   const [states, setStates] = useState([])
@@ -63,8 +62,6 @@ const AccountDetails = props => {
     const fetchAdmin = async () => {
       try {
         const admin = await props.auth.getAdmin()
-
-        console.log(admin, 'res from api')
 
         if (admin?._id) {
           setAdmin(admin)
@@ -107,7 +104,7 @@ const AccountDetails = props => {
           }
         }
       } catch (err) {
-        console.error('Failed to fetch profile:', err)
+        throw new Error('Failed to fetch profile:', err)
       }
     }
 
@@ -142,7 +139,7 @@ const AccountDetails = props => {
     e.preventDefault()
 
     if (!admin?._id) {
-      console.error('❌ Admin ID not found, aborting update')
+     throw new Error('❌ Admin ID not found, aborting update')
 
       return
     }
@@ -166,17 +163,17 @@ const AccountDetails = props => {
 
       if (file && file instanceof File) {
         data.append('avatar', file)
-        console.log(file, 'avatra')
+       
       } else {
-        console.warn("File not uploaded because it's not a File object:", file)
+       throw new Error("File not uploaded because it's not a File object:", file)
       }
 
       await props.auth.update(id, data)
 
       setSnackbar({ open: true, message: 'Profile updated successfully', severity: 'success' })
-      console.log(data, 'profile update successfully')
+     
     } catch (err) {
-      console.error('Update failed:', err)
+      throw new Error('Update failed:', err)
       setSnackbar({ open: true, message: 'Failed to update profile', severity: 'error' })
     }
   }
@@ -206,8 +203,6 @@ const AccountDetails = props => {
               className='rounded'
               src={imgSrc}
               alt='Profile'
-              onError={() => console.log('Image failed to load:', imgSrc)}
-              onLoad={() => console.log('Image loaded successfully:', imgSrc)}
             />
 
             <div className='flex flex-grow flex-col gap-4'>

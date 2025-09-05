@@ -8,16 +8,11 @@ export const loginAdmin = object => async dispatch => {
   try {
     const response = await Auth.loginAdmin(object)
 
-    console.log(response, 'respoense')
-
-
-    // console.log("Login Response:", response.token);
+   
     if (response.admin) {
       const { admin } = response
 
-      // console.log(token, "token");
-      console.log(admin, 'admin')
-
+     
       dispatch({
         type: CONSTANTS.LOGIN_SUCCESSFULLY,
         payload: { admin  }
@@ -27,7 +22,7 @@ export const loginAdmin = object => async dispatch => {
       
 return response
     } else {
-      console.log('Invalid user:Login Failed')
+   
       dispatch({ type: CONSTANTS.LOGIN_FAILURE })
       
 return { success: false, message: "Invalid login" };
@@ -47,23 +42,21 @@ return {
 
 export const getAdmin = () => async dispatch => {
   try {
-    console.log('getadmin running')
+    
     const response = await Auth.getAdmin()
 
-    console.log('getadmin in action.js', response)
-
+   
    if (response && response.success) {
 
       dispatch({
         type: CONSTANTS.GET_ADMIN,
         payload: response.admin
       })
-      console.log('admin get successfully', response)
       
 return response.admin;
     }
   } catch (error) {
-    console.error('fetching admin error:', error)
+   throw new Error('fetching admin error:', error)
   }
 }
 
@@ -72,7 +65,6 @@ export const registerUser = object => async dispatch => {
   try {
     const response = await Auth.registerUser(object)
 
-    console.log('Register Response:', response)
 
     if (response.success) {
       dispatch({ type: CONSTANTS.REGISTER_USER_SUCCESSFULLY })
@@ -82,7 +74,7 @@ return response
       return response
     }
   } catch (error) {
-    console.error('Register error:', error)
+   throw new Error('Register error:', error)
   }
 }
 
@@ -90,10 +82,10 @@ export const forgotPassword = requestObject => async (dispatch, getState) => {
   try {
     const response = await Auth.forgotPassword_user(requestObject)
 
-    console.log('forgot password:', response)
+   
 
     if (response.success) {
-      console.log(response)
+  
       dispatch({ type: CONSTANTS.FORGOT_PASSWORD })
       
 return response
@@ -103,7 +95,7 @@ return response
       }
     }
   } catch (error) {
-    console.log(error, 'error')
+    throw new Error(error, 'error')
   }
 }
 
@@ -111,16 +103,15 @@ export const resetPassword = requestObject => async (dispatch, getState) => {
   try {
     const response = await Auth.resetPassowrd_user(requestObject)
 
-    console.log('reset password:', response)
-
+    
     if (response.success) {
-      console.log(response)
+     
       dispatch({ type: CONSTANTS.RESET_PASSWORD })
       
 return response
     }
   } catch (error) {
-    console.log(error, 'error')
+    throw new Error(error, 'error')
   }
 }
 
@@ -130,23 +121,20 @@ export const updateById = (id, updateData) => async dispatch => {
   try {
     const response = await Auth.updateById(id, updateData)
 
-    console.log(response, 'response of updating user.')
-
+   
     if (response.success) {
       dispatch({
         type: CONSTANTS.UPDATE_SUCCESS,
         payload:  response.updatedUser,
       })
 
-      // alert('Profile updated successfully')
-      console.log(response, 'user data after updating')
       
 return response
     } else {
       dispatch({ type: CONSTANTS.UPDATE_FAILURE })
     }
   } catch (error) {
-    console.error('Update error:', error)
+   throw new Error('Update error:', error)
     dispatch({ type: CONSTANTS.UPDATE_FAILURE })
   }
 }
@@ -155,19 +143,17 @@ export const getUserById = (id) => async(dispatch)=>{
   try{
     const response=await Auth.GetUserById(id);
 
-    console.log(response,'response by action for get post by id');
   
     dispatch({
       type:CONSTANTS.GET_USER,
       payload:response,
     });
-     console.log(response,'response after dispatch');
     
 return response;
 
-    // }
+   
   }catch(error){
-console.log(error, "issue in getting my profile");
+// console.log(error, "issue in getting my profile");
     
 return { success: false, msg: error.msg };
   }
@@ -176,23 +162,21 @@ return { success: false, msg: error.msg };
 
 export const getAllUsers = () => async dispatch => {
   try {
-    console.log('getuser running')
+
     const response = await Auth.getAllUsers()
 
-    console.log('getuser in action.js', response)
-
+  
    if (response && response.success) {
 
       dispatch({
         type: CONSTANTS.GET_ALL_USERS,
         payload: response.users
       })
-      console.log('user get successfully', response)
       
 return response.users;
     }
   } catch (error) {
-    console.error('fetching user error:', error)
+   throw new Error('fetching user error:', error)
   }
 }
 
@@ -203,9 +187,8 @@ export const logout = () => async dispatch => {
 
     dispatch({ type: CONSTANTS.LOGOUT });
     dispatch({ type: CONSTANTS.GET_ADMIN, payload: { admin: null } });
-    console.log("Logged out successfully");
   } catch (error) {
-    console.error("Logout action error:", error);
+  throw new Error("Logout action error:", error);
   }
 };
 
@@ -214,8 +197,7 @@ export const deleteById = (id) => async dispatch => {
    
     const response = await Auth.deleteById(id)
 
-    console.log('delete user response', response)
-
+   
     if (response.success) {
       dispatch({ type: CONSTANTS.DELETE})
     }
@@ -223,7 +205,7 @@ export const deleteById = (id) => async dispatch => {
     
 return response
   } catch (error) {
-    console.error('delete user error', error)
+    throw new Error('delete user error', error)
   }
 }
 
@@ -239,7 +221,7 @@ return { success: true, data: response };
       return { success: false, message: 'Export failed' };
     }
   } catch (error) {
-    console.error('export user error:', error);
+    // console.error('export user error:', error);
     
 return { success: false, message: error.message };
   }
@@ -257,7 +239,7 @@ return { success: true, data: response };
       return { success: false, message: 'Export failed' };
     }
   } catch (error) {
-    console.error('export post error:', error);
+    // console.error('export post error:', error);
     
 return { success: false, message: error.message };
   }

@@ -78,7 +78,7 @@ const PostTable = props => {
           throw new Error('Post list is empty or invalid')
         }
       } catch (err) {
-        console.log('Error in fetchPosts:', err)
+       throw new Error('Error in fetchPosts:', err)
         setError('Failed to load posts')
       } finally {
         setLoading(false)
@@ -142,7 +142,6 @@ const PostTable = props => {
         showSnackbar('Failed to delete post.')
       }
     } catch (err) {
-      console.error('Delete failed', err)
       showSnackbar('Delete failed due to server error.')
     } finally {
       setDeleteLoading(false)
@@ -169,7 +168,6 @@ const PostTable = props => {
         showSnackbar('Posts exported successfully')
       }
     } catch (err) {
-      console.error('Export failed:', err)
       showSnackbar('Failed to export posts')
     }
   }
@@ -183,9 +181,6 @@ const PostTable = props => {
 
         const url = window.URL.createObjectURL(blob)
 
-        console.log(blob, 'blog')
-        console.log(url, 'url')
-
         const link = document.createElement('a')
 
         link.href = url
@@ -197,7 +192,6 @@ const PostTable = props => {
         showSnackbar('Failed to export post')
       }
     } catch (err) {
-      console.error('Single post export failed:', err)
       showSnackbar('Failed to export post')
     }
   }

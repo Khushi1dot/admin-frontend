@@ -54,10 +54,9 @@ const UserActions = (props) => {
       
         const res = await dashboard.getRecentUserActions({ from, to })
       
-        console.log(res,'res');
         setActions(res.actions || [])
       } catch (err) {
-        console.error('Failed to fetch recent user actions:', err)
+    throw new Error('Failed to fetch recent user actions:', err)
       }
     }
 

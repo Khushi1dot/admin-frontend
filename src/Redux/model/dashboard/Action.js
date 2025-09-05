@@ -19,10 +19,10 @@ export const getSummary =
 
         return response
       } else {
-        console.warn('⚠️ Failed to fetch summary:', response)
+        throw new Error('⚠️ Failed to fetch summary:', response)
       }
     } catch (error) {
-      console.error('🚨 Error fetching summary:', error)
+      throw new Error('🚨 Error fetching summary:', error)
     }
   }
 
@@ -38,10 +38,10 @@ export const getTopCategories = params => async dispatch => {
 
       return response
     } else {
-      console.warn('⚠️ Failed to fetch top categories:', response)
+      throw new Error('⚠️ Failed to fetch top categories:', response)
     }
   } catch (error) {
-    console.error('Error fetching top categories:', error)
+   throw new Error('Error fetching top categories:', error)
   }
 }
 
@@ -57,10 +57,10 @@ export const getTopContributors = params => async dispatch => {
 
       return response
     } else {
-      console.warn('⚠️ Failed to fetch top contributors:', response)
+      throw new Error('⚠️ Failed to fetch top contributors:', response)
     }
   } catch (error) {
-    console.error('Error fetching top contributors:', error)
+   throw new Error('Error fetching top contributors:', error)
   }
 }
 
@@ -76,10 +76,10 @@ export const getRecentUserActions = params => async dispatch => {
     
       return response
     } else {
-      console.warn('⚠️ Failed to fetch user activities:', response)
+      throw new Error('⚠️ Failed to fetch user activities:', response)
     }
   } catch (error) {
-    console.error('Error fetching recent user actions:', error)
+   throw new Error('Error fetching recent user actions:', error)
   }
 }
 
@@ -95,10 +95,10 @@ export const getRecentPostActions = params => async dispatch => {
     
       return response
     } else {
-      console.warn('⚠️ Failed to fetch post activities:', response)
+     throw new Error('⚠️ Failed to fetch post activities:', response)
     }
   } catch (error) {
-    console.error('Error fetching recent posts:', error)
+    throw new Error('Error fetching recent posts:', error)
   }
 }
 
@@ -116,10 +116,10 @@ export const getUserPostCorrelation =
     
         return response
       } else {
-        console.warn('⚠️ Failed to fetch user post correlation:', response)
+        throw new Error('⚠️ Failed to fetch user post correlation:', response)
       }
     } catch (error) {
-      console.error('Error fetching user-post correlation:', error)
+    throw new Error('Error fetching user-post correlation:', error)
     }
   }
 
@@ -135,9 +135,9 @@ export const getSignupsByCountry = params => async dispatch => {
     
       return response
     } else {
-      console.warn('⚠️ Failed to fetch signups by country:', response)
+      throw new Error('⚠️ Failed to fetch signups by country:', response)
     }
   } catch (error) {
-    console.error('Error fetching signups by country:', error)
+   throw new Error('Error fetching signups by country:', error)
   }
 }

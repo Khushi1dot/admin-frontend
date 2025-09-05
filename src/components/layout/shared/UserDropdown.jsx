@@ -37,7 +37,7 @@ const BadgeContentSpan = styled('span')({
 })
 
 const UserDropdown = (props) => {
-  console.log('props', props);
+
 
   // States
   const [open, setOpen] = useState(false)
@@ -79,27 +79,23 @@ const UserDropdown = (props) => {
 
     // Fetch admin on mount
   useEffect(() => {
-    console.log('before api')
+   
 
     const fetchAdmin = async () => {
-      console.log('after api')
+     
 
       try {
         const res = await props.auth.getAdmin()
 
-        console.log('Response from getAdmin:', res)
-
+       
         if (res) {
           setAdmin(res)
-          console.log('Admin fetched successfully:', res)
-        }
+         }
       } catch (err) {
-        console.error('Failed to fetch admin:', err)
-      }
+          }
     }
 
 
-// console.log('enddd')
     fetchAdmin()
   }, [])
 

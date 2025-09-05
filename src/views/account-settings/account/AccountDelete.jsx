@@ -16,7 +16,6 @@ const AccountDelete = (props) => {
 const[confirm,setConfirm] = useState(false);
 const [loading,setLoading]=useState(false);
 
-  console.log(props,'props');
 
    const handleDelete = async () => {
     if (!confirm) return alert('Please confirm deletion.')

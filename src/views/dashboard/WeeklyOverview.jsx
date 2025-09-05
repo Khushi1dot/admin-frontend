@@ -51,7 +51,7 @@ const handleClose = () => setOpen(false)
         setUserCounts(result.map(item => item.userCount))
         setPostCounts(result.map(item => item.postCount))
       } catch (err) {
-        console.error('Failed to fetch correlation data', err)
+       throw new Error('Failed to fetch correlation data', err)
       }
     }
 
